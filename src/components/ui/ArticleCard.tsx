@@ -11,7 +11,7 @@ import { formatDate } from '@/utils/date';
  */
 type ArticleCardProps = {
   title: string;
-  slug: { current: string };
+  slug: string;
   publishedAt: string;
   excerpt?: string;
   mainImage?: any;
@@ -26,7 +26,7 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <Link
-      href={`/articles/${slug.current}`}
+      href={`/articles/${slug}`}
       className="group block overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700 transition-all hover:shadow-md"
     >
       {mainImage ? (

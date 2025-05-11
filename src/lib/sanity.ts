@@ -3,10 +3,10 @@ import imageUrlBuilder from '@sanity/image-url';
 
 // Sanity.io client configuration
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'su9ynij6',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2023-05-03', // Use the latest API version
-  useCdn: process.env.NODE_ENV === 'production', // Use CDN only in production
+  apiVersion: '2024-03-21', // Use today's date
+  useCdn: process.env.NODE_ENV === 'production',
 });
 
 // Image URL builder for Sanity images

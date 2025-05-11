@@ -5,13 +5,20 @@ import { client } from './sanity';
  * @returns Array of project objects
  */
 export async function getProjects() {
-  return client.fetch(`*[_type == "project"] | order(_createdAt desc) {
+  return client.fetch(`*[_type == "project"] | order(completionDate desc) {
     _id,
     title,
-    slug,
-    excerpt,
-    mainImage,
-    tags
+    "slug": slug.current,
+    previewImage {
+      asset->{
+        _id,
+        url
+      }
+    },
+    previewDescription,
+    skills,
+    projectType,
+    completionDate
   }`);
 }
 
@@ -26,11 +33,14 @@ export async function getProjectBySlug(slug: string) {
       _id,
       title,
       slug,
-      excerpt,
-      mainImage,
-      webLinks,
+      featuredImage,
+      projectUrl,
+      summary,
+      skills,
+      motivation,
       body,
-      tags
+      projectType,
+      completionDate
     }`,
     { slug }
   );
@@ -41,15 +51,19 @@ export async function getProjectBySlug(slug: string) {
  * @returns Array of article objects
  */
 export async function getArticles() {
-  return client.fetch(`*[_type == "article"] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    publishedAt,
-    excerpt,
-    mainImage,
-    tags
-  }`);
+  return client.fetch(
+    `*[_type == "article"] | order(publishedAt desc) {
+      _id,
+      title,
+      "slug": slug.current,
+      publishedAt,
+      excerpt,
+      mainImage,
+      tags
+    }`,
+    {}, // Empty params object
+    { cache: 'no-store' } // Disable caching
+  );
 }
 
 /**
@@ -62,13 +76,14 @@ export async function getArticleBySlug(slug: string) {
     `*[_type == "article" && slug.current == $slug][0] {
       _id,
       title,
-      slug,
+      "slug": slug.current,
       publishedAt,
       excerpt,
       mainImage,
       body,
       tags
     }`,
-    { slug }
+    { slug },
+    { cache: 'no-store' } // Disable caching
   );
 } 

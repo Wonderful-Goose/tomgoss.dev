@@ -6,10 +6,11 @@ import type { Metadata } from 'next';
 type Project = {
   _id: string;
   title: string;
-  slug: { current: string };
-  excerpt?: string;
-  mainImage?: any;
-  tags?: string[];
+  slug: string;
+  previewDescription?: string;
+  previewImage?: any;
+  skills?: string[];
+  projectType: string;
 };
 
 export const metadata: Metadata = {

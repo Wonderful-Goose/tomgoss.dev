@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getArticleBySlug } from '@/lib/api';
 import { urlFor } from '@/lib/sanity';
 import { formatDate } from '@/utils/date';
+import { PortableText } from '@portabletext/react';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -112,12 +113,11 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         )}
 
-        {/* For MVP, show placeholder content if no body content exists */}
-        <div className="prose max-w-none">
+        <div className="prose prose-neutral max-w-none">
           {article.body ? (
-            <p>Content coming soon.</p>
+            <PortableText value={article.body} />
           ) : (
-            <p>Content coming soon.</p>
+            <p className="text-neutral-500 italic">This article has no content yet.</p>
           )}
         </div>
 

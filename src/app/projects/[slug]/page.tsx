@@ -3,26 +3,25 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProjectBySlug } from '@/lib/api';
 import { urlFor } from '@/lib/sanity';
+import { PortableText } from '@portabletext/react';
 import type { Metadata } from 'next';
 
 type Props = {
   params: { slug: string };
 };
 
-type WebLink = {
-  title?: string;
-  url: string;
-};
-
 type Project = {
   _id: string;
   title: string;
   slug: { current: string };
-  excerpt?: string;
-  mainImage?: any;
-  tags?: string[];
-  webLinks?: WebLink[];
+  featuredImage?: any;
+  projectUrl?: string;
+  summary: string;
+  skills?: string[];
+  motivation?: string;
   body?: any;
+  projectType: string;
+  completionDate?: string;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -36,17 +35,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Get the image URL or use the default OG image
-  const imageUrl = project.mainImage 
-    ? urlFor(project.mainImage).width(1200).height(630).url()
+  const imageUrl = project.featuredImage 
+    ? urlFor(project.featuredImage).width(1200).height(630).url()
     : 'https://tomgoss.dev/images/og-image.jpg';
 
   return {
     title: `${project.title} | Thomas Goss`,
-    description: project.excerpt || 'Project case study by Thomas Goss',
-    keywords: project.tags || ['content marketing', 'product marketing', 'project'],
+    description: project.summary || 'Project case study by Thomas Goss',
+    keywords: project.skills || ['content marketing', 'product marketing', 'project'],
     openGraph: {
       title: project.title,
-      description: project.excerpt || 'Project case study by Thomas Goss',
+      description: project.summary || 'Project case study by Thomas Goss',
       type: 'article',
       url: `https://tomgoss.dev/projects/${params.slug}`,
       images: [
@@ -61,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: project.title,
-      description: project.excerpt || 'Project case study by Thomas Goss',
+      description: project.summary || 'Project case study by Thomas Goss',
       images: [imageUrl],
     },
   };
@@ -86,25 +85,33 @@ export default async function ProjectPage({ params }: Props) {
         Back to Projects
       </Link>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">{project.title}</h1>
+      <div className="flex justify-between items-start mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-neutral-900">{project.title}</h1>
+        <span className="text-sm px-3 py-1 bg-primary/10 text-primary rounded-lg">
+          {project.projectType === 'personal' ? 'Personal Project' :
+           project.projectType === 'client' ? 'Client Work' :
+           project.projectType === 'professional' ? 'Professional Work' :
+           'Open Source'}
+        </span>
+      </div>
 
-      {project.tags && project.tags.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.map((tag) => (
+      {project.skills && project.skills.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.skills.map((skill) => (
             <span
-              key={tag}
+              key={skill}
               className="inline-block rounded-full bg-neutral-100 px-3 py-1 text-sm text-neutral-700"
             >
-              {tag}
+              {skill}
             </span>
           ))}
         </div>
       )}
 
-      {project.mainImage && (
+      {project.featuredImage && (
         <div className="relative h-64 md:h-96 w-full overflow-hidden rounded-lg mb-8">
           <Image
-            src={urlFor(project.mainImage).url()}
+            src={urlFor(project.featuredImage).url()}
             alt={project.title}
             fill
             className="object-cover"
@@ -112,38 +119,51 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       )}
 
-      {project.excerpt && (
-        <div className="text-lg text-neutral-700 mb-8 max-w-3xl">
-          {project.excerpt}
+      {project.projectUrl && (
+        <div className="mb-8">
+          <Link
+            href={project.projectUrl}
+            className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            View Project
+          </Link>
         </div>
       )}
 
-      {/* For MVP, show placeholder content if no body content exists */}
-      <div className="prose max-w-3xl mx-auto">
-        {project.body ? (
-          <p>Content coming soon.</p>
-        ) : (
-          <p>Content coming soon.</p>
+      <div className="prose max-w-3xl">
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+          <p className="text-neutral-700">{project.summary}</p>
+        </div>
+
+        {project.motivation && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Motivation</h2>
+            <p className="text-neutral-700">{project.motivation}</p>
+          </div>
+        )}
+
+        {project.body && (
+          <div className="mt-8">
+            <h2 className="text-2xl font-semibold mb-4">Details</h2>
+            <div className="prose prose-neutral max-w-none">
+              <PortableText value={project.body} />
+            </div>
+          </div>
         )}
       </div>
 
-      {project.webLinks && project.webLinks.length > 0 && (
-        <div className="mt-12 max-w-3xl mx-auto">
-          <h2 className="text-xl font-semibold text-neutral-900 mb-4">Project Links</h2>
-          <ul className="space-y-2">
-            {project.webLinks.map((link, index) => (
-              <li key={index}>
-                <Link
-                  href={link.url}
-                  className="text-primary hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.title || link.url}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {project.completionDate && (
+        <div className="mt-12 text-sm text-neutral-500">
+          Completed: {new Date(project.completionDate).toLocaleDateString('en-US', { 
+            year: 'numeric',
+            month: 'long'
+          })}
         </div>
       )}
     </div>
