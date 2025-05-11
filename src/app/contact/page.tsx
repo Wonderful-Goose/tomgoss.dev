@@ -1,26 +1,28 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from 'react'
+import Link from 'next/link'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
+    message: '',
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(
+    null
+  )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitResult(null);
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitResult(null)
 
     try {
       // For MVP, we'll use a mailto link as fallback
@@ -28,35 +30,36 @@ export default function ContactPage() {
       // like Formspree or Netlify Forms
 
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000))
 
       // For now, just show success message and reset form
       setSubmitResult({
         success: true,
-        message: 'Thanks for your message! I\'ll get back to you soon.'
-      });
-      setFormData({ name: '', email: '', message: '' });
+        message: "Thanks for your message! I'll get back to you soon.",
+      })
+      setFormData({ name: '', email: '', message: '' })
     } catch (error) {
       setSubmitResult({
         success: false,
-        message: 'Something went wrong. Please try again or email me directly.'
-      });
+        message: 'Something went wrong. Please try again or email me directly.',
+      })
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const socialLinks = [
     { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'linkedin' },
     { name: 'GitHub', url: 'https://github.com', icon: 'github' },
-    { name: 'Twitter', url: 'https://twitter.com', icon: 'twitter' }
-  ];
+    { name: 'Twitter', url: 'https://twitter.com', icon: 'twitter' },
+  ]
 
   return (
     <div className="container mx-auto px-4 py-10 md:py-16">
       <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">Get In Touch</h1>
       <p className="text-lg text-neutral-600 mb-8 max-w-3xl">
-        Have a question or want to work together? Fill out the form below or reach out via email or social media.
+        Have a question or want to work together? Fill out the form below or reach out via email or
+        social media.
       </p>
 
       <div className="grid md:grid-cols-2 gap-12">
@@ -119,7 +122,9 @@ export default function ContactPage() {
             </div>
 
             {submitResult && (
-              <div className={`p-4 rounded-lg ${submitResult.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+              <div
+                className={`p-4 rounded-lg ${submitResult.success ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}
+              >
                 {submitResult.message}
               </div>
             )}
@@ -140,7 +145,7 @@ export default function ContactPage() {
           <h2 className="text-xl font-semibold text-neutral-900 mb-4">Connect With Me</h2>
 
           <ul className="space-y-4">
-            {socialLinks.map((link) => (
+            {socialLinks.map(link => (
               <li key={link.name}>
                 <Link
                   href={link.url}
@@ -169,8 +174,19 @@ export default function ContactPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
               </svg>
               Download CV (PDF)
             </Link>
@@ -178,5 +194,5 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
-  );
-} 
+  )
+}

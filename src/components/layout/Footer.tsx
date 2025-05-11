@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import Link from 'next/link'
 
@@ -16,24 +16,24 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-6">
-            <Link 
-              href="https://linkedin.com" 
-              target="_blank" 
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors"
             >
               LinkedIn
             </Link>
-            <Link 
-              href="https://github.com" 
-              target="_blank" 
+            <Link
+              href="https://github.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors"
             >
               GitHub
             </Link>
-            <Link 
-              href="/cv.pdf" 
+            <Link
+              href="/cv.pdf"
               className="text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors"
             >
               CV
@@ -43,4 +43,4 @@ export default function Footer() {
       </div>
     </footer>
   )
-} 
+}

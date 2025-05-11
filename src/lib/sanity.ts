@@ -1,5 +1,5 @@
-import { createClient } from 'next-sanity';
-import imageUrlBuilder from '@sanity/image-url';
+import { createClient } from 'next-sanity'
+import imageUrlBuilder from '@sanity/image-url'
 
 // Sanity.io client configuration
 export const client = createClient({
@@ -7,10 +7,10 @@ export const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-03-21', // Use today's date
   useCdn: process.env.NODE_ENV === 'production',
-});
+})
 
 // Image URL builder for Sanity images
-const builder = imageUrlBuilder(client);
+const builder = imageUrlBuilder(client)
 
 /**
  * Helper function to generate image URLs from Sanity image objects
@@ -18,5 +18,5 @@ const builder = imageUrlBuilder(client);
  * @returns URL string for the image
  */
 export function urlFor(source: any) {
-  return builder.image(source);
-} 
+  return builder.image(source)
+}

@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity'
 
 /**
  * Project schema for portfolio items
@@ -14,7 +14,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -24,7 +24,7 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'projectType',
@@ -39,7 +39,7 @@ export default defineType({
           { title: 'Social Media', value: 'social' },
         ],
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'completionDate',
@@ -59,14 +59,14 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'previewDescription',
       title: 'Preview Description',
       type: 'text',
       description: 'Short description shown in the projects list (max 200 characters)',
-      validation: (Rule) => Rule.max(200),
+      validation: Rule => Rule.max(200),
     }),
 
     // Detail View Fields
@@ -100,7 +100,7 @@ export default defineType({
       title: 'Summary',
       type: 'text',
       description: 'Overview of the project (shown at the top of the detail page)',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'excerpt',
@@ -220,7 +220,8 @@ export default defineType({
       name: 'projectDate',
       title: 'Project Date',
       type: 'date',
-      description: 'When the project was completed (legacy field - use completionDate for new projects)',
+      description:
+        'When the project was completed (legacy field - use completionDate for new projects)',
     }),
     defineField({
       name: 'webLinks',
@@ -251,12 +252,12 @@ export default defineType({
         newsletter: 'Newsletter',
         article: 'Article',
         social: 'Social Media',
-      };
+      }
       return {
         title,
         subtitle: typeLabels[projectType as keyof typeof typeLabels],
         media,
-      };
+      }
     },
   },
-}); 
+})

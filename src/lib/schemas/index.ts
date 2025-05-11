@@ -1,7 +1,4 @@
-import project from './project';
-import article from './article';
+import project from './project'
+import article from './article'
 
-export const schemaTypes = [
-  project,
-  article,
-]; 
+export const schemaTypes = [project, article]

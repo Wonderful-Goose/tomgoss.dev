@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity'
 
 /**
  * Article schema for Sanity.io
@@ -13,7 +13,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -23,13 +23,13 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'excerpt',
@@ -108,7 +108,7 @@ export default defineType({
         title,
         subtitle: publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft',
         media,
-      };
+      }
     },
   },
-}); 
+})

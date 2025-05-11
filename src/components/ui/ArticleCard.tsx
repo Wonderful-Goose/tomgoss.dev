@@ -1,28 +1,28 @@
-"use client";
+'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { urlFor } from '@/lib/sanity';
-import { formatDate } from '@/utils/date';
+import Image from 'next/image'
+import Link from 'next/link'
+import { urlFor } from '@/lib/sanity'
+import { formatDate } from '@/utils/date'
 
 /**
  * ArticleCard component displays a preview of an article
  * with image, title, date, and description
  */
 type ArticleCardProps = {
-  title: string;
-  slug: string;
-  publishedAt: string;
-  excerpt?: string;
-  mainImage?: any;
-};
+  title: string
+  slug: string
+  publishedAt: string
+  excerpt?: string
+  mainImage?: any
+}
 
-export default function ArticleCard({ 
-  title, 
-  slug, 
-  publishedAt, 
-  excerpt, 
-  mainImage 
+export default function ArticleCard({
+  title,
+  slug,
+  publishedAt,
+  excerpt,
+  mainImage,
 }: ArticleCardProps) {
   return (
     <Link
@@ -49,5 +49,5 @@ export default function ArticleCard({
         {excerpt && <p className="mt-2 text-neutral-600 dark:text-neutral-400">{excerpt}</p>}
       </div>
     </Link>
-  );
-} 
+  )
+}

@@ -4,10 +4,10 @@
  * @returns Formatted date string (e.g., "January 1, 2023")
  */
 export function formatDate(dateString: string) {
-  const date = new Date(dateString);
+  const date = new Date(dateString)
   return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
-  }).format(date);
-} 
+    day: 'numeric',
+  }).format(date)
+}

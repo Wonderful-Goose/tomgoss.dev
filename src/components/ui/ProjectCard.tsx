@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { urlFor } from '@/lib/sanity';
+import Image from 'next/image'
+import Link from 'next/link'
+import { urlFor } from '@/lib/sanity'
 
 /**
- * ProjectCard component displays a preview of a project 
+ * ProjectCard component displays a preview of a project
  * with image, title, description, and skills
  */
 type ProjectCardProps = {
-  title: string;
-  slug: string;
-  previewDescription?: string;
-  previewImage?: any;
-  skills?: string[];
-  projectType: string;
-};
+  title: string
+  slug: string
+  previewDescription?: string
+  previewImage?: any
+  skills?: string[]
+  projectType: string
+}
 
 // Map project types to display labels
 const projectTypeLabels: Record<string, string> = {
@@ -24,19 +24,19 @@ const projectTypeLabels: Record<string, string> = {
   newsletter: 'Newsletter',
   article: 'Article',
   social: 'Social Media',
-};
+}
 
-export default function ProjectCard({ 
-  title, 
-  slug, 
-  previewDescription, 
-  previewImage, 
+export default function ProjectCard({
+  title,
+  slug,
+  previewDescription,
+  previewImage,
   skills,
-  projectType
+  projectType,
 }: ProjectCardProps) {
   // Get the display label for the project type, fallback to the raw value if not found
-  const projectTypeDisplay = projectTypeLabels[projectType] || projectType;
-  
+  const projectTypeDisplay = projectTypeLabels[projectType] || projectType
+
   return (
     <Link
       href={`/projects/${slug}`}
@@ -54,9 +54,7 @@ export default function ProjectCard({
       </div>
       <div className="p-4">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">
-            {title}
-          </h3>
+          <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">{title}</h3>
           <span className="text-sm text-neutral-600 dark:text-neutral-400">
             {projectTypeDisplay}
           </span>
@@ -68,7 +66,7 @@ export default function ProjectCard({
         )}
         {skills && skills.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
-            {skills.map((skill) => (
+            {skills.map(skill => (
               <span
                 key={skill}
                 className="inline-block rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-1 text-xs text-neutral-600 dark:text-neutral-400"
@@ -80,5 +78,5 @@ export default function ProjectCard({
         )}
       </div>
     </Link>
-  );
-} 
+  )
+}

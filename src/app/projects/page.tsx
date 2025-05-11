@@ -1,25 +1,27 @@
-import ProjectCard from '@/components/ui/ProjectCard';
-import { getProjects } from '@/lib/api';
-import type { Metadata } from 'next';
+import ProjectCard from '@/components/ui/ProjectCard'
+import { getProjects } from '@/lib/api'
+import type { Metadata } from 'next'
 
 // Define the project type based on the ProjectCard component props
 type Project = {
-  _id: string;
-  title: string;
-  slug: string;
-  previewDescription?: string;
-  previewImage?: any;
-  skills?: string[];
-  projectType: string;
-};
+  _id: string
+  title: string
+  slug: string
+  previewDescription?: string
+  previewImage?: any
+  skills?: string[]
+  projectType: string
+}
 
 export const metadata: Metadata = {
   title: 'Projects | Thomas Goss',
-  description: 'Explore content marketing, product marketing, and AI application projects by Thomas Goss.',
+  description:
+    'Explore content marketing, product marketing, and AI application projects by Thomas Goss.',
   keywords: ['projects', 'portfolio', 'content marketing', 'product marketing', 'AI applications'],
   openGraph: {
     title: 'Projects | Thomas Goss',
-    description: 'Explore content marketing, product marketing, and AI application projects by Thomas Goss.',
+    description:
+      'Explore content marketing, product marketing, and AI application projects by Thomas Goss.',
     url: 'https://tomgoss.dev/projects',
     siteName: 'Thomas Goss',
     images: [
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Thomas Goss Projects',
-      }
+      },
     ],
     locale: 'en_US',
     type: 'website',
@@ -36,13 +38,14 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Projects | Thomas Goss',
-    description: 'Explore content marketing, product marketing, and AI application projects by Thomas Goss.',
+    description:
+      'Explore content marketing, product marketing, and AI application projects by Thomas Goss.',
     images: ['https://tomgoss.dev/images/og-image.jpg'],
   },
-};
+}
 
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const projects = await getProjects()
 
   return (
     <div className="container mx-auto px-4 py-10 md:py-16">
@@ -63,5 +66,5 @@ export default async function ProjectsPage() {
         </div>
       )}
     </div>
-  );
-} 
+  )
+}

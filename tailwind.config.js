@@ -7,7 +7,7 @@ module.exports = {
         primary: {
           DEFAULT: '#2A6B84', // muted teal
           light: '#3A8BA4',
-          dark: '#1A5B74'
+          dark: '#1A5B74',
         },
         neutral: {
           50: '#f9fafb',
@@ -19,13 +19,13 @@ module.exports = {
           600: '#4b5563',
           700: '#374151',
           800: '#1f2937',
-          900: '#111827'
-        }
+          900: '#111827',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif']
-      }
-    }
+        sans: ['Inter', 'sans-serif'],
+      },
+    },
   },
-  plugins: []
-}; 
+  plugins: [],
+}

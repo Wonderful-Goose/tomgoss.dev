@@ -1,4 +1,4 @@
-import { client } from './sanity';
+import { client } from './sanity'
 
 /**
  * Fetches all projects from Sanity
@@ -19,7 +19,7 @@ export async function getProjects() {
     skills,
     projectType,
     completionDate
-  }`);
+  }`)
 }
 
 /**
@@ -43,7 +43,7 @@ export async function getProjectBySlug(slug: string) {
       completionDate
     }`,
     { slug }
-  );
+  )
 }
 
 /**
@@ -63,7 +63,7 @@ export async function getArticles() {
     }`,
     {}, // Empty params object
     { cache: 'no-store' } // Disable caching
-  );
+  )
 }
 
 /**
@@ -85,5 +85,5 @@ export async function getArticleBySlug(slug: string) {
     }`,
     { slug },
     { cache: 'no-store' } // Disable caching
-  );
-} 
+  )
+}

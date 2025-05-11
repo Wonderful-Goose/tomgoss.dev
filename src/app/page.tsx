@@ -1,42 +1,42 @@
-import Link from 'next/link';
-import ProjectCard from '@/components/ui/ProjectCard';
-import ArticleCard from '@/components/ui/ArticleCard';
-import { getProjects, getArticles } from '@/lib/api';
+import Link from 'next/link'
+import ProjectCard from '@/components/ui/ProjectCard'
+import ArticleCard from '@/components/ui/ArticleCard'
+import { getProjects, getArticles } from '@/lib/api'
 
 // Define types for our data
 type Project = {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt?: string;
-  mainImage?: any;
-  tags?: string[];
-};
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt?: string
+  mainImage?: any
+  tags?: string[]
+}
 
 type Article = {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  publishedAt: string;
-  excerpt?: string;
-  mainImage?: any;
-};
+  _id: string
+  title: string
+  slug: { current: string }
+  publishedAt: string
+  excerpt?: string
+  mainImage?: any
+}
 
 export default async function HomePage() {
   // Fetch data - will show placeholders if fetching fails
-  let projects: Project[] = [];
-  let articles: Article[] = [];
-  
+  let projects: Project[] = []
+  let articles: Article[] = []
+
   try {
-    projects = await getProjects();
-    articles = await getArticles();
+    projects = await getProjects()
+    articles = await getArticles()
   } catch (error) {
-    console.error('Error fetching content:', error);
+    console.error('Error fetching content:', error)
   }
 
   // Take only the first 2 projects and 3 articles for featured sections
-  const featuredProjects = projects.slice(0, 2);
-  const latestArticles = articles.slice(0, 3);
+  const featuredProjects = projects.slice(0, 2)
+  const latestArticles = articles.slice(0, 3)
 
   return (
     <div className="space-y-20 py-10 md:py-16">
@@ -47,7 +47,8 @@ export default async function HomePage() {
             Developer &amp; Designer
           </h1>
           <p className="mt-6 text-xl text-neutral-600 dark:text-neutral-400">
-            I build beautiful, functional websites and applications with a focus on user experience and performance.
+            I build beautiful, functional websites and applications with a focus on user experience
+            and performance.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -114,5 +115,5 @@ export default async function HomePage() {
         )}
       </section>
     </div>
-  );
-} 
+  )
+}

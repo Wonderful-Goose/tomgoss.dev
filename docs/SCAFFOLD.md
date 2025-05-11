@@ -89,21 +89,18 @@ import { defineConfig } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default defineConfig({
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}'
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         accent: '#0070f3', // adjust to your preferred muted teal or deep blue
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans]
-      }
-    }
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 })
 ```
 
@@ -122,32 +119,29 @@ export default defineConfig({
 
 1. **Home (`app/page.tsx`)**
 
-   * `Hero` with headline and CTA
-   * `FeaturedProjects` (grid of 2 sample items)
-   * `LatestArticles` (placeholder / “Coming soon!”)
+   - `Hero` with headline and CTA
+   - `FeaturedProjects` (grid of 2 sample items)
+   - `LatestArticles` (placeholder / “Coming soon!”)
 
 2. **About (`app/about/page.tsx`)**
 
-   * Summary, skills list, CV link
+   - Summary, skills list, CV link
 
 3. **Projects (`app/projects/page.tsx`)**
 
-   * Fetch/display sample array of 2–3 projects
-   * `ProjectCard`
+   - Fetch/display sample array of 2–3 projects
+   - `ProjectCard`
 
 4. **Articles (`app/articles/page.tsx`)**
 
-   * Placeholder info: “No posts yet, stay tuned”
-   * `ArticleCard` stub
+   - Placeholder info: “No posts yet, stay tuned”
+   - `ArticleCard` stub
 
 5. **Contact (`app/contact/page.tsx`)**
 
-   * Contact form fields or mailto link
+   - Contact form fields or mailto link
 
 ---
 
-
-* Configure Sanity schemas in `/sanity/schemas` for `project` and `article`.
-* Hook up data fetching in components using the Sanity client.
-
-
+- Configure Sanity schemas in `/sanity/schemas` for `project` and `article`.
+- Hook up data fetching in components using the Sanity client.

@@ -52,4 +52,4 @@ src/
   styles/              # Global styles and Tailwind setup
   types/               # TypeScript type definitions
   utils/               # Utility functions
-``` 
+```

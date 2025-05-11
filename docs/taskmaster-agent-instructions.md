@@ -139,36 +139,43 @@ npx task-master update --from=<id> --prompt="Switching to Tailwind CSS from styl
 ## Typical Workflow
 
 1. **Start your work session** by checking the task list:
+
    ```bash
    npx task-master list
    ```
 
 2. **Identify what to work on next**:
+
    ```bash
    npx task-master next
    ```
 
 3. **Examine task details**:
+
    ```bash
    npx task-master show <id>
    ```
 
 4. **Break down complex tasks** into smaller subtasks:
+
    ```bash
    npx task-master expand --id=<id> --research
    ```
 
 5. **Start working** on the task:
+
    ```bash
    npx task-master set-status --id=<id> --status=in-progress
    ```
 
 6. **Document implementation details** as you progress (for subtasks):
+
    ```bash
    npx task-master update-subtask --id=<subtask_id> --prompt="Found X approach works best because..."
    ```
 
 7. **Mark tasks as complete** when done:
+
    ```bash
    npx task-master set-status --id=<id> --status=done
    ```
@@ -233,4 +240,4 @@ Each task typically contains:
 - Break down complex tasks before starting work
 - Document findings as you implement
 - Mark tasks as done as soon as they're verified complete
-- Update tasks when implementation differs from the plan 
+- Update tasks when implementation differs from the plan
