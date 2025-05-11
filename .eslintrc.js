@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'prettier'],
+  extends: [
+    'next/core-web-vitals',
+    'eslint:recommended',
+    'prettier'
+  ],
+  plugins: ['prettier'],
   rules: {
     'react/no-unescaped-entities': 'off',
     'react/display-name': 'off',
@@ -7,5 +12,6 @@ module.exports = {
       'warn',
       { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }
     ],
+    'prettier/prettier': 'error'
   },
 } 
