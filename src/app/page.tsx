@@ -10,7 +10,7 @@ type Project = {
   slug: string
   projectType: string
   excerpt?: string
-  mainImage?: any
+  previewImage?: any
   tags?: string[]
 }
 
@@ -86,7 +86,7 @@ export default async function HomePage() {
                 slug={project.slug}
                 projectType={project.projectType}
                 previewDescription={project.excerpt}
-                previewImage={project.mainImage}
+                previewImage={project.previewImage}
                 skills={project.tags}
               />
             ))}
