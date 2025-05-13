@@ -11,17 +11,6 @@ type Props = {
   params: { slug: string }
 }
 
-type Article = {
-  _id: string
-  title: string
-  slug: { current: string }
-  publishedAt: string
-  excerpt?: string
-  mainImage?: any
-  body?: any
-  tags?: string[]
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = await getArticleBySlug(params.slug)
 

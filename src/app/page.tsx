@@ -7,7 +7,8 @@ import { getProjects, getArticles } from '@/lib/api'
 type Project = {
   _id: string
   title: string
-  slug: { current: string }
+  slug: string
+  projectType: string
   excerpt?: string
   mainImage?: any
   tags?: string[]
@@ -16,7 +17,7 @@ type Project = {
 type Article = {
   _id: string
   title: string
-  slug: { current: string }
+  slug: string
   publishedAt: string
   excerpt?: string
   mainImage?: any
@@ -79,7 +80,15 @@ export default async function HomePage() {
         {featuredProjects.length > 0 ? (
           <div className="grid md:grid-cols-2 gap-8">
             {featuredProjects.map((project: Project) => (
-              <ProjectCard key={project._id} {...project} />
+              <ProjectCard
+                key={project._id}
+                title={project.title}
+                slug={project.slug}
+                projectType={project.projectType}
+                previewDescription={project.excerpt}
+                previewImage={project.mainImage}
+                skills={project.tags}
+              />
             ))}
           </div>
         ) : (
@@ -103,7 +112,14 @@ export default async function HomePage() {
         {latestArticles.length > 0 ? (
           <div className="grid md:grid-cols-3 gap-8">
             {latestArticles.map((article: Article) => (
-              <ArticleCard key={article._id} {...article} />
+              <ArticleCard
+                key={article._id}
+                title={article.title}
+                slug={article.slug}
+                publishedAt={article.publishedAt}
+                excerpt={article.excerpt}
+                mainImage={article.mainImage}
+              />
             ))}
           </div>
         ) : (

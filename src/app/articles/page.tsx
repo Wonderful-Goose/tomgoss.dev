@@ -57,7 +57,14 @@ export default async function ArticlesPage() {
       {articles.length > 0 ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article: Article) => (
-            <ArticleCard key={article._id} {...article} />
+            <ArticleCard
+              key={article._id}
+              title={article.title}
+              slug={article.slug.current}
+              publishedAt={article.publishedAt}
+              excerpt={article.excerpt}
+              mainImage={article.mainImage}
+            />
           ))}
         </div>
       ) : (
