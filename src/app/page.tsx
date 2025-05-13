@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import ProjectCard from '@/components/ui/ProjectCard'
 import ArticleCard from '@/components/ui/ArticleCard'
+import HeroSection from '@/components/sections/HeroSection'
 import { getProjects, getArticles } from '@/lib/api'
 
 // Define types for our data
@@ -41,32 +42,7 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-20 py-10 md:py-16">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            Developer &amp; Designer
-          </h1>
-          <p className="mt-6 text-xl text-neutral-600 dark:text-neutral-400">
-            I build beautiful, functional websites and applications with a focus on user experience
-            and performance.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/projects"
-              className="px-6 py-3 rounded-lg bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors"
-            >
-              View My Work
-            </Link>
-            <Link
-              href="/contact"
-              className="px-6 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
-            >
-              Get In Touch
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Featured Projects Section */}
       <section className="container mx-auto px-4">
