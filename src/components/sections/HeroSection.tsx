@@ -46,7 +46,7 @@ export default function HeroSection(/* props: HeroSectionProps */) {
       </p>
 
       {/* Container for the animated skills */}
-      <div className="font-sans text-2xl md:text-3xl lg:text-4xl text-accent font-bold mb-6 h-16 md:h-20 flex items-center justify-center">
+      <div className="font-sans text-2xl md:text-3xl lg:text-4xl font-bold mb-6 h-16 md:h-20 flex items-center justify-center bg-gradient-to-r from-accent to-blue-700 bg-clip-text text-transparent">
         <TypeAnimation
           sequence={animationSequence}
           wrapper="span"
@@ -66,13 +66,13 @@ export default function HeroSection(/* props: HeroSectionProps */) {
       <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           href="/projects"
-          className="px-8 py-3 rounded-lg bg-accent text-white font-medium hover:opacity-90 transition-all duration-300"
+          className="px-8 py-3 rounded-lg bg-gradient-to-b from-accent to-blue-700 text-white font-medium hover:opacity-90 transition-all duration-300 shadow-md"
         >
           View My Work
         </Link>
         <Link
           href="/articles" // As per spec "Read My Insights"
-          className="px-8 py-3 rounded-lg border border-accent text-accent font-medium hover:bg-accent hover:text-white transition-all duration-300"
+          className="px-8 py-3 rounded-lg border border-accent text-accent font-medium hover:bg-gradient-to-b hover:from-accent hover:to-blue-700 hover:text-white transition-all duration-300 shadow-md"
         >
           Read My Insights
         </Link>
