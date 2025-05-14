@@ -12,36 +12,40 @@ export default function HeroSection(/* props: HeroSectionProps */) {
   const skills = [
     "content strategy",
     "product marketing",
-    "SEO",
-    "Automation and operations",
+    "seo",
+    "automation and operations",
     "technical writing",
   ]
 
   const bio = "I design and run systems that turn complex technologies into high-impact stories"
 
   // Prepare the sequence for TypeAnimation
-  // Each skill will be typed out, then paused, then deleted (implicitly by the next skill typing)
-  // We add a pause (e.g., 1000ms) after each skill.
+  // Each skill will be typed out, then paused. The library handles deletion.
   const animationSequence = skills.reduce((acc, skill) => {
-    acc.push(skill);
-    acc.push(2000);
+    acc.push(skill); // Type out the skill
+    acc.push(2000);  // Pause for 2000ms after typing, before deletion starts
     return acc;
   }, [] as (string | number)[]);
+
+  // To ensure the very last deletion pause doesn't make the loop feel too long before restarting,
+  // we might remove the last two items ('' and 300) if skills.length > 0, 
+  // as repeat={Infinity} will handle the loop. However, the library might handle this well.
+  // Let's test current behavior first.
 
   return (
     <section className="container mx-auto px-4 py-20 md:py-32 text-center">
       {/* Main Headline: Tom Goss */}
-      <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold text-textPrimary leading-tight mb-4">
+      <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold text-textPrimary leading-tight mb-6 text-shadow-subtle">
         Tom Goss
       </h1>
       
       {/* Subtitle: Marketer and Programmer */}
-      <h2 className="font-sans text-2xl md:text-3xl text-textPrimary mb-6">
+      <h2 className="font-sans text-2xl md:text-3xl mb-4 text-gradient-accent">
         Marketer and Programmer
       </h2>
 
       {/* "specialising in" text */}
-      <p className="font-sans text-xl text-textPrimary mt-2 mb-3">
+      <p className="font-sans text-xl text-accent mt-0 mb-2">
         specialising in
       </p>
 
@@ -51,8 +55,9 @@ export default function HeroSection(/* props: HeroSectionProps */) {
           sequence={animationSequence}
           wrapper="span"
           speed={40}
+          omitDeletionAnimation={true}
           repeat={Infinity}
-          cursor={false}
+          cursor={true}
           style={{ display: 'inline-block' }} 
         />
       </div>
