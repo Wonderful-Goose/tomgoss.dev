@@ -66,13 +66,13 @@ export default function HeroSection(/* props: HeroSectionProps */) {
       <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           href="/projects"
-          className="px-8 py-3 rounded-lg bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium hover:bg-neutral-700 dark:hover:bg-neutral-200 transition-colors"
+          className="px-8 py-3 rounded-lg bg-accent text-white font-medium hover:opacity-90 transition-all duration-300"
         >
           View My Work
         </Link>
         <Link
           href="/articles" // As per spec "Read My Insights"
-          className="px-8 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          className="px-8 py-3 rounded-lg border border-accent text-accent font-medium hover:bg-accent hover:text-white transition-all duration-300"
         >
           Read My Insights
         </Link>
