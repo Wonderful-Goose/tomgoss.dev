@@ -18,4 +18,24 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   font-family: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent to-blue-700 bg-clip-text text-transparent;
+  }
+  .bg-gradient-accent {
+    @apply bg-gradient-to-b from-accent to-blue-700;
+  }
+  .text-shadow-subtle {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .animated-bg-container {
+    /* Ensure it doesn't allow content to spill if blobs are large */
+    @apply overflow-hidden;
+  }
+
+  /* All .network-node, .node-X, @keyframes pulse-node, */
+  /* .network-line, .line-X, and @keyframes pulse-line rules removed. */
 } 

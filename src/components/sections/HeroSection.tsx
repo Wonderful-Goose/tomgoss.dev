@@ -33,14 +33,19 @@ export default function HeroSection(/* props: HeroSectionProps */) {
   // Let's test current behavior first.
 
   return (
-    <section className="container mx-auto px-4 py-20 md:py-32 text-center">
+    <section className="container mx-auto px-4 py-20 md:py-32 text-center relative">
+      {/* Animated Background Container - will sit behind content */}
+      <div className="animated-bg-container absolute inset-0 z-[-1] overflow-hidden">
+        {/* Content cleared */}
+      </div>
+
       {/* Main Headline: Tom Goss */}
       <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold text-textPrimary leading-tight mb-6 text-shadow-subtle">
         Tom Goss
       </h1>
       
       {/* Subtitle: Marketer and Programmer */}
-      <h2 className="font-sans text-2xl md:text-3xl mb-4 text-gradient-accent">
+      <h2 className="font-sans text-2xl md:text-3xl mb-4 text-gradient-accent border-b border-blue-500/60 pb-2 inline-block">
         Marketer and Programmer
       </h2>
 
